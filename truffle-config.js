@@ -140,6 +140,7 @@ module.exports = {
   // }
 };
 module.exports = {
+  contracts_build_directory: "./src/artifacts",
   networks: {
     development: {
       host: "127.0.0.1",
