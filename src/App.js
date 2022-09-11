@@ -1,13 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Web3 from 'web3';
 import Contacts from './artifacts/Contacts.json';
 
-const contactsAddress = "0xE090aCc4eAED1F3885C0617FD62a6A79dd76F69A";
+const contactsAddress = "0xCdb0B80B74C62d329f7B0b344f05E48ebdf0DC36";
 
 function App() {
   const [account, setAccount] = useState();
   const [counter, setCounter] = useState();
-  const [contactList, setContactList] = useState();
+  // const [contacts, setContacts] = useState();
 
   async function fetchContacts() {
     const web3 = new Web3(Web3.givenProvider || 'http://localhost:7545');
@@ -16,18 +16,25 @@ function App() {
     const contactsContract = new web3.eth.Contract(Contacts.abi, contactsAddress);
     const counter = await contactsContract.methods.count.call().call();
     console.log('counter: ', counter);
-    const contactList = await contactsContract.methods.contacts(1).call();
+    const contactList = await contactsContract.methods.contacts(accounts[0]).call();
    // console.log('contact list: ', contactList);
     setCounter(counter);
-    setContactList(contactList);
   }
+
+  useEffect(() => {
+    console.log("Counter has changed")
+  },[counter])
 
   return (
     <div className="App">
       <header className="App-header">
         <button onClick={fetchContacts}>Fetch Contacts</button>
       </header>
-      Your account is: {account}
+      <h5 className="strong">
+        <strong>Your account is: {account}</strong>
+        <p>This is how many contacts you have: {counter}</p>
+
+      </h5>
     </div>
   );
 }
