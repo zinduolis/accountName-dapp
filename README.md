@@ -1,6 +1,6 @@
 # Overview
 
-1. Smart contracts and React frontend for contact address book
+1. Smart contracts and React frontend for naming account on blockchain
 
 # Achievements
 
