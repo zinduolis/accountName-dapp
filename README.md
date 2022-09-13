@@ -15,5 +15,4 @@
 2. React
 3. Ganache
 4. web3
-5. openzeppelin
-6. Truffle
+5. Truffle
